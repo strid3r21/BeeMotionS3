@@ -1,5 +1,6 @@
 
-import time, gc, os
+from time import sleep
+import esp32
 import neopixel
 from machine import Pin
 from machine import deepsleep
@@ -13,15 +14,17 @@ pixel = neopixel.NeoPixel(Pin(bms3.RGB_DATA), 1)
 # Turn on the power to the NeoPixel
 bms3.set_rgb_power(True)
 
+# set the wake up PIR Sensor to be pin in and name it wake1
+wake1 = Pin(bms3.PIR, mode = Pin.IN)
+
 # set GRB to red
 pixel[0] = ( 255, 0, 0, 0.5)
 pixel.write()
 
-# wait 5 seconds so that you can catch the ESP awake to establish a serial communication later
-# you should remove this sleep line in your final script
-sleep(5)
+# set the wake up source to be the PIR motion sensor
+esp32.wake_on_ext0(pin = wake1, level = esp32.WAKEUP_ANY_HIGH)
 
 print('Im awake, but Im going to sleep')
+sleep(10)
 
-#sleep for 10 seconds (10000 milliseconds)
-deepsleep(10000)
+deepsleep()
