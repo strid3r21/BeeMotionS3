@@ -24,7 +24,12 @@ pixel.write()
 # set the wake up source to be the PIR motion sensor
 esp32.wake_on_ext0(pin = wake1, level = esp32.WAKEUP_ANY_HIGH)
 
-print('Im awake, but Im going to sleep')
-sleep(10)
+print('Im awake, but Im going to sleep in 60 seconds')
+# VERY IMPORTANT - set the sleep (ie, delay) to minimum 60 seconds.
+# if this is set to a low number like 5, then if you need to change the code
+# and re-upload it to the board, the board will go to sleep too quickly
+# before you can get the new code uploaded. the only way to fix it in
+# that scenario is to reflash the micropython firmware to the board.
+sleep(60)
 
 deepsleep()
