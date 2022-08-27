@@ -1,7 +1,8 @@
 # How to flash the Micro Python Firmware onto the Bee Motion S3
 
 
-Put the board into download mode by holding boot button and pressing reset button then release both buttons. 
+Put the board into download mode by holding boot button and pressing reset button then release both buttons. <br/>
+
 Use esptool to erease flash and then flash new firmware onto the board.
 
 Erase the flash.
