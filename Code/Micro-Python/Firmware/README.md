@@ -20,7 +20,7 @@ esptool.py --chip esp32s3 --port /dev/cu.usbmodem01 erase_flash
 ### Windows
 Change xxx to whatever COM port is being used by the board
 ```bash
-esptool --chip esp32s3 --port COMxxx erase_flash
+esptool.py --chip esp32s3 --port COMxxx erase_flash
 ```
 
 Now download the version of the firmware you would like to install from the options below.
@@ -39,4 +39,4 @@ esptool.py --chip esp32s3 --port /dev/cu.usbmodem01 write_flash -z 0 firmware.bi
 ### Windows
 Change xxx to whatever COM port is being used by the board
 ```bash
-esptool --chip esp32s3 --port COMxxx write_flash -z 0 firmware.bin
+esptool.py --chip esp32s3 --port COMxxx write_flash -z 0 firmware.bin
