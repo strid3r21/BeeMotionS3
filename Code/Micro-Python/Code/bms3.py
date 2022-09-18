@@ -35,8 +35,12 @@ I2C_SCL = const(36)
 # Helper functions
 
 def set_rgb_power(state):
-    """Enable or Disable power to the second LDO"""
+    """Enable or Disable power to the RGB LED"""
     Pin(RGB_PWR, Pin.OUT).value(state)
+
+def set_ldo2_power(state):
+    """Enable or Disable power to the second LDO"""
+    Pin(LDO2, Pin.OUT).value(state)
 
 # Create ADC and set attenuation and return the ambient light value from the onboard sensor
 def get_amb_light():
@@ -59,7 +63,7 @@ def get_battery_voltage():
     Returns the current battery voltage.
     """
     adc = ADC(Pin(VBAT_SENSE))  # Assign the ADC pin to read
-    # We are going to read the ADC 10 times and discard the results as we can't guarantee the ADC is calibrated or stable yet after boot. Not sure why we have to do this :(
+    # We are going to read the ADC 10 times and discard the results as we can't guarantee the ADC is calibrated or stable yet after boot.
     for _ in range(10):
         adc.read()
     measuredvbat = adc.read()

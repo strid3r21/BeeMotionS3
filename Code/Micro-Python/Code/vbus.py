@@ -1,16 +1,16 @@
-import time, gc, os
+import time
+from machine import Pin
 import neopixel
-import board, digitalio
 import bms3
 
 # Create a NeoPixel instance
 # Brightness of 0.3 is ample for the 1515 sized LED
-pixel = neopixel.NeoPixel(board.NEOPIXEL, 1, brightness=0.3, auto_write=True, pixel_order=neopixel.GRB)
+pixel = neopixel.NeoPixel(Pin(bms3.RGB_DATA), 1)
 # Turn on the power to the NeoPixel
-bms3.set_ldo2_power(True)
+bms3.set_rgb_power(True)
 
 # this code will detect if the USB is plugged in. this can be useful if you want your code to stop running when you've 
-# plugged your board into your
+# plugged your board in your
 while True:
         vbus =  bms3.get_vbus_present()
         if vbus == False:
