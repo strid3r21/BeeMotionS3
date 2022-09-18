@@ -1,5 +1,5 @@
 ## Schematic
-![alt text](https://github.com/strid3r21/BeeMotionS3/blob/main/Schematics/Schematic.png?raw=true)
+![alt text](https://github.com/strid3r21/BeeMotionS3/blob/main/Schematics/Schematic_v3.png?raw=true)
 
 _____
 
