@@ -11,7 +11,7 @@ pixel = neopixel.NeoPixel(board.NEOPIXEL, 1, brightness=0.3, auto_write=True, pi
 color_index = 0
 
 # Turn on the power to the NeoPixel
-bms3.set_pixel_power(True)
+bms3.set_ldo2_power(True)
 
 # Rainbow colours on the NeoPixel
 while True:
@@ -24,4 +24,3 @@ while True:
 
     # Sleep for 15ms so the colour cycle isn't too fast
     time.sleep(0.015)
-

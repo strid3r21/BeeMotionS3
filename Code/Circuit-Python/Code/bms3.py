@@ -7,19 +7,23 @@ import board
 from digitalio import DigitalInOut, Direction, Pull
 from analogio import AnalogIn
 
-# Setup the NeoPixel power pin
-pixel_power = DigitalInOut(board.NEOPIXEL_POWER)
-pixel_power.direction = Direction.OUTPUT
+
+ldo2 = DigitalInOut(board.LDO2)
+ldo2.direction = Direction.OUTPUT
+
+vbus_sense = DigitalInOut(board.VBUS_SENSE)
+vbus_sense.direction = Direction.INPUT
 
 # Setup the BATTERY voltage sense pin
 vbat_voltage = AnalogIn(board.BATTERY)
 
    
 # Helper functions
-def set_pixel_power(state):
+
+def set_ldo2_power(state):
     """Enable or Disable power to the onboard NeoPixel to either show colour, or to turn off to reduce current consumption."""
-    global pixel_power
-    pixel_power.value = state
+    global ldo2
+    ldo2.value = state
     
 def get_battery_voltage():
     """Get the approximate battery voltage."""
@@ -28,9 +32,15 @@ def get_battery_voltage():
     global vbat_voltage
     ADC_RESOLUTION = 2 ** 16 -1
     AREF_VOLTAGE = 3.3
-    R1 = 442000
+    R1 = 422000
     R2 = 160000
     return (vbat_voltage.value/ADC_RESOLUTION*AREF_VOLTAGE*(R1+R2)/R2)
+
+def get_vbus_present():
+    """Detect if VBUS (5V) power source is present"""
+    global vbus_sense
+    return vbus_sense.value
+
 
 def rgb_color_wheel(wheel_pos):
     """Color wheel to allow for cycling through the rainbow of RGB colors."""
@@ -44,5 +54,3 @@ def rgb_color_wheel(wheel_pos):
     else:
         wheel_pos -= 170
         return wheel_pos * 3, 255 - wheel_pos * 3, 0
-    
-
