@@ -1,0 +1,42 @@
+esphome:
+  name: example
+
+esp32:
+  board: esp32-s3-devkitc-1
+  variant: ESP32S3
+  framework:
+    type: arduino
+    version: 2.0.3
+    platform_version: 5.1.1
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "****************"
+
+ota:
+  password: "***********************"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "example"
+    password: "wJrjXiQz3vmw"
+
+binary_sensor:
+
+  - platform: gpio
+    pin:
+      number: 4
+      mode: INPUT
+    name: "PIR Motion"
+    device_class: motion
+    filters:
+      - delayed_off: 30sec 
+      # set the delayed off to how ever long you want the sensor to stay on for. if its set too
+      # too short you may get a lot of "motion detected" reading in quick succession.
