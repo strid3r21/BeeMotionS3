@@ -25,7 +25,7 @@ while True:
         if vbat_voltage >= 3.5 and vbat_voltage < 4.0 :
                 pixel[0] = ( 227, 252, 3, 0.5)
                 pixel.write()
-        if vbat_voltage >= 4.0:
+        if vbat_voltage >= 3.8:
                 pixel[0] = (0, 255, 0, 0.5)   #set the RGB to green if the battery is above 4.0v
                 pixel.write()
         print(vbat_voltage)
